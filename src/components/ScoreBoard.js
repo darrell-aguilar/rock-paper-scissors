@@ -1,4 +1,3 @@
-import { useState } from "react"
 import '../css/ScoreBoard.css'
 import logo from './assets/logo.svg';
 

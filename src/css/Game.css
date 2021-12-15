@@ -16,6 +16,21 @@
     z-index: 999;
     border-width: 20px;
     border-style: solid;
+}
+
+.icon-large {
+    width: 25%;
+    height: 20%;
+    margin: 3%;
+    padding: 60px;
+    border-radius: 100%;
+    background-color: white;
+    z-index: 999;
+    border-width: 30px;
+    border-style: solid;
+}
+
+.icon-answer {
     cursor: pointer;
 }
 
@@ -32,6 +47,49 @@
 }
 
 #game-inprogress {
+    margin: auto;
     width: 60%;
     color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#answer-animation {
+    animation: show-answer 3s both;
+}
+
+#opponent-animation {
+    animation: show-answer-later 3s both;
+}
+
+.answer-icon-container {
+    margin-top: 100px;
+}
+
+@keyframes show-answer {
+    0% {
+        visibility: none;
+        opacity: 0;
+    }
+    100% {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+@keyframes show-answer-later {
+    0% {
+        visibility: none;
+        opacity: 0;
+    }
+
+    50% {
+        visibility: none;
+        opacity: 0;
+    }
+
+    100% {
+        visibility: visible;
+        opacity: 1;
+    }
 }

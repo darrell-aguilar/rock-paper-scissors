@@ -24,7 +24,7 @@ const Game = (props) => {
 
     useEffect(() => {
         switch(answer + opponentAnswer) {
-            case 'scissorsrock':
+            case 'scissorspaper':
             case 'rockscissors':
             case 'paperrock':
                 setWinner('You Win! 😀')
@@ -34,17 +34,17 @@ const Game = (props) => {
             case 'paperscissors':
                 setWinner('Opponent Wins 🤨')
                 break
-            case 'rockrock':
-            case 'scissorsscissors':
-            case 'paperpaper':
+            default:
                 setWinner("It's a draw 😑")
                 break
         }
-    }, [opponentAnswer])
+    }, [answer, opponentAnswer])
 
     useEffect(() => {
         if (winner === 'You Win! 😀') {
-            props.addScore()
+            setTimeout(() => {
+                props.addScore()
+            }, 3000)
         }
     }, [winner])
     
@@ -56,13 +56,25 @@ const Game = (props) => {
         <div className='game'>
             { props.gameStarted === false &&
             <div id='icon-container'>
-                <img onClick={handleClick} alt='paper' className='icon' id='paper' src={paper} />
-                <img onClick={handleClick} alt='scissors' className='icon' id='scissors' src={scissors} />
-                <img onClick={handleClick} alt='rock' className='icon' id='rock' src={rock} />
+                <img onClick={handleClick} alt='paper' className='icon icon-answer' id='paper' src={paper} />
+                <img onClick={handleClick} alt='scissors' className='icon icon-answer' id='scissors' src={scissors} />
+                <img onClick={handleClick} alt='rock' className='icon icon-answer' id='rock' src={rock} />
             </div>
             }
-            {props.gameStarted &&
+            { props.gameStarted &&
             <div id='game-inprogress'>
+                <div className='answer' id='your-choice'>
+                    <h2>YOU PICKED</h2>
+                    <div className='answer-icon-container' id='answer-animation'>
+                        <img className='icon-large' id={`${answer}`} alt={answer} src={require(`./assets/icon-${answer}.svg`).default}></img>
+                    </div>
+                </div>
+                <div className='answer' id='opponent-choice'>
+                    <h2>THE HOUSE PICKED</h2>
+                    <div className='answer-icon-container' id='opponent-animation'>
+                    <   img className='icon-large' id={`${opponentAnswer}`} alt={opponentAnswer} src={require(`./assets/icon-${opponentAnswer}.svg`).default}></img>
+                    </div>
+                </div>
                 {/* <p>You have chosen {answer}</p>
                 <p>Your opponent has chosen {opponentAnswer}</p>
 

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ScoreBoard from './components/ScoreBoard';
 import Game from './components/Game';
 import imageRules from './components/assets/image-rules.svg';
+import imageCloseRule from './components/assets/icon-close.svg'
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
   return (
     <div className="App" style={{opacity: 1.5}}>
       <div className='Game-Container'>
-        {showRules === true && <RulesModal />}
+        {showRules === true && <RulesModal showRulesAction={showRulesAction}/>}
         <ScoreBoard score={score}/>
         <Game startGame={startGame} gameStarted={gameStarted} addScore={addScore}/>
         <Rules showRulesAction={showRulesAction} />
@@ -34,12 +35,20 @@ function App() {
   );
 }
 
-const RulesModal = () => {
+const RulesModal = (props) => {
+
+  const closeModal = () => {
+    props.showRulesAction()
+  }
+
   return (
     <div id='Rules-Modal-Container'>
       <div id='Rules-Modal'>
-        <h2>RULES</h2>
-        <img alt='rules' src={imageRules}></img>
+        <div id='Rules-Text'>
+          <h2>RULES</h2>
+          <img id='close' alt='close' onClick={closeModal} src={imageCloseRule}></img>
+        </div>
+        <img alt='rules'  src={imageRules}></img>
       </div>
   </div>
   )
