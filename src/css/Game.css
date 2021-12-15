@@ -7,10 +7,10 @@
 }
 
 .icon {
-    width: 13%;
-    height: 10%;
-    margin: 3%;
-    padding: 40px;
+    width: 11%;
+    height: 11%;
+    margin: 5%;
+    padding: 10%;;
     border-radius: 100%;
     background-color: white;
     z-index: 999;
@@ -34,6 +34,10 @@
     cursor: pointer;
 }
 
+.answer {
+    width: 300px;
+}
+
 #paper {
     border-color: #5470F4;
 }
@@ -50,20 +54,70 @@
     margin: auto;
     width: 60%;
     color: white;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    animation: game-width 4s both;
 }
 
 #answer-animation {
-    animation: show-answer 3s both;
+    animation: show-answer 2s both;
 }
 
 #opponent-animation {
-    animation: show-answer-later 3s both;
+    animation: show-answer-later 2s both;
 }
 
 .answer-icon-container {
     margin-top: 100px;
+}
+
+#restart-game {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+    animation: show-restart-button 1s both;
+}
+
+@keyframes show-restart-button {
+    0% {
+        visibility: none;
+        opacity: 0;
+    }
+
+    100% {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+@keyframes game-width {
+    0% {
+        width: 60%;
+    }
+
+    50% {
+        width: 60%;
+    }
+
+    100% {
+        width: 80%;
+    }
+}
+
+#restart-game-button {
+    margin-top: 20px;
+    width: 250px;
+    height: 80px;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 2rem;
 }
 
 @keyframes show-answer {
@@ -92,4 +146,143 @@
         visibility: visible;
         opacity: 1;
     }
+}
+
+
+@media screen and (max-width: 1400px) {
+    #icon-container {
+        width: 50%;
+    }
+
+    #game-inprogress {
+        align-items: center;
+        width: 100%;
+        color: white;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        animation: game-width 4s both;
+    }
+
+    .answer {
+        width: 200px;
+        font-size: 0.8em
+    }
+
+    .icon-large {
+        width: 20%;
+        height: 15%;
+        margin: 1%;
+        padding: 40px;
+        border-radius: 100%;
+        background-color: white;
+        z-index: 999;
+        border-width: 20px;
+        border-style: solid;
+    }
+
+    #restart-game-button {
+        margin-top: 20px;
+        width: 200px;
+        height: 70px;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 1.2rem;
+    }
+
+    
+    #restart-game {
+        left: 50%;
+        top: 70%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        justify-content: center;
+        align-items: center;
+        animation: show-restart-button 1s both;
+    }
+}
+
+
+@media screen and (max-width: 900px) {
+    #icon-container {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #icon-container {
+        margin-top: 0;
+        width: 100%;
+        background-size: 15em;
+    }
+
+    .icon {
+        width: 8%;
+        height: 8%;
+        margin: 5%;
+        padding: 10%;;
+        border-radius: 100%;
+        background-color: white;
+        z-index: 999;
+        border-width: 10px;
+        border-style: solid;
+    }
+
+    .icon-large {
+        width: 15%;
+        height: 10%;
+        margin: 1%;
+        padding: 30px;
+        border-radius: 100%;
+        background-color: white;
+        z-index: 999;
+        border-width: 15px;
+        border-style: solid;
+    }
+
+    .answer {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .answer > h2 {
+        padding-top: 10px;
+        font-size: 1em;
+    }
+
+    .answer-icon-container {
+        margin-top: 20px;
+    }
+
+    #game-inprogress {
+        align-items: center;
+        width: 100%;
+        color: white;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        animation: none;
+        }
+
+        #restart-game-button {
+            margin-top: 5px;
+            width: 150px;
+            height: 70px;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        #restart-game {
+            left: 50%;
+            top: 70%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            height: 100px;
+            justify-content: center;
+            align-items: center;
+            animation: show-restart-button 1s both;
+        }
 }

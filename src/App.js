@@ -9,7 +9,8 @@ import imageCloseRule from './components/assets/icon-close.svg'
 function App() {
   const [showRules, setShowRules] = useState(false)
   const [gameStarted, setGameStarted] = useState(false)
-  const [score, setScore] = useState(0)
+  var getScore = JSON.parse(localStorage.getItem("score") || 0)
+  const [score, setScore] = useState(getScore)
 
   const showRulesAction = (props) => {
     setShowRules(!showRules)
@@ -21,6 +22,12 @@ function App() {
 
   const addScore = () => {
     setScore(score + 1)
+    localStorage.setItem("score", JSON.stringify(getScore + 1))
+  }
+
+  const subtractScore = () => {
+    setScore(score - 1)
+    localStorage.setItem("score", JSON.stringify(getScore - 1))
   }
 
   return (
@@ -28,7 +35,7 @@ function App() {
       <div className='Game-Container'>
         {showRules === true && <RulesModal showRulesAction={showRulesAction}/>}
         <ScoreBoard score={score}/>
-        <Game startGame={startGame} gameStarted={gameStarted} addScore={addScore}/>
+        <Game startGame={startGame} gameStarted={gameStarted} addScore={addScore} subtractScore={subtractScore} score={score}/>
         <Rules showRulesAction={showRulesAction} />
       </div>
     </div>
@@ -48,7 +55,7 @@ const RulesModal = (props) => {
           <h2>RULES</h2>
           <img id='close' alt='close' onClick={closeModal} src={imageCloseRule}></img>
         </div>
-        <img alt='rules'  src={imageRules}></img>
+        <img id='rules' alt='rules' src={imageRules}></img>
       </div>
   </div>
   )

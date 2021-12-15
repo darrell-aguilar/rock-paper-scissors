@@ -10,6 +10,8 @@ const Game = (props) => {
     const [answer, setAnswer] = useState(null)
     const [opponentAnswer, setOpponentAnswer] = useState(null)
     const [winner, setWinner] = useState(null)
+    const [restartButton, setRestartButton] = useState(false)
+    const [matchCounter, setMatchCounter] = useState(0)
 
     const handleClick = (event) => {
         props.startGame();
@@ -20,35 +22,44 @@ const Game = (props) => {
     const generateOpponentAnswer = () => {
         var randomNumber = (Math.floor(Math.random() * possibleAnswers.length))
         setOpponentAnswer(possibleAnswers[randomNumber])
+        setMatchCounter(matchCounter + 1)
     }
 
     useEffect(() => {
+        if (matchCounter === 0) return
+
         switch(answer + opponentAnswer) {
             case 'scissorspaper':
             case 'rockscissors':
             case 'paperrock':
-                setWinner('You Win! 😀')
+                setWinner('YOU WIN')
+                setTimeout(() => {
+                    props.addScore()
+                }, 3500)
                 break
             case 'scissorsrock':
             case 'rockpaper':
             case 'paperscissors':
-                setWinner('Opponent Wins 🤨')
+                setWinner('YOU LOSE')
+                setTimeout(() => {
+                    props.subtractScore()
+                }, 3500)
                 break
             default:
-                setWinner("It's a draw 😑")
+                setWinner("DRAW")
                 break
         }
-    }, [answer, opponentAnswer])
+    }, [matchCounter])
 
     useEffect(() => {
-        if (winner === 'You Win! 😀') {
-            setTimeout(() => {
-                props.addScore()
-            }, 3000)
-        }
-    }, [winner])
+         if (matchCounter === 0) return
+         setTimeout(() => {
+            setRestartButton(true) 
+        }, 3500)
+    }, [matchCounter])
     
     const restart = () => {
+        setRestartButton(false)
         props.startGame();
     }
 
@@ -69,18 +80,27 @@ const Game = (props) => {
                         <img className='icon-large' id={`${answer}`} alt={answer} src={require(`./assets/icon-${answer}.svg`).default}></img>
                     </div>
                 </div>
+                {restartButton && <RestartGame restart={restart} winner={winner}/> }
                 <div className='answer' id='opponent-choice'>
                     <h2>THE HOUSE PICKED</h2>
                     <div className='answer-icon-container' id='opponent-animation'>
-                    <   img className='icon-large' id={`${opponentAnswer}`} alt={opponentAnswer} src={require(`./assets/icon-${opponentAnswer}.svg`).default}></img>
+                        <img className='icon-large' id={`${opponentAnswer}`} alt={opponentAnswer} src={require(`./assets/icon-${opponentAnswer}.svg`).default}></img>
                     </div>
                 </div>
-                {/* <p>You have chosen {answer}</p>
-                <p>Your opponent has chosen {opponentAnswer}</p>
-
-                <p>{winner}</p>
-                <button onClick={restart}>Play Again!</button> */}
             </div>}
+        </div>
+    )
+}
+
+const RestartGame = (props) => {
+    const updateRestartGame = () => {
+        props.restart()
+    }
+
+    return (
+        <div id='restart-game'>
+            <h1>{props.winner}</h1>
+            <button id='restart-game-button' onClick={updateRestartGame}>PLAY AGAIN</button>
         </div>
     )
 }
