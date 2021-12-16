@@ -57,15 +57,15 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    animation: game-width 4s both;
+    animation: game-width 1.5s both;
 }
 
 #answer-animation {
-    animation: show-answer 2s both;
+    animation: show-answer 1s both;
 }
 
 #opponent-animation {
-    animation: show-answer-later 2s both;
+    animation: show-answer-later 1s both;
 }
 
 .answer-icon-container {
@@ -82,19 +82,6 @@
     height: 500px;
     justify-content: center;
     align-items: center;
-    animation: show-restart-button 1s both;
-}
-
-@keyframes show-restart-button {
-    0% {
-        visibility: none;
-        opacity: 0;
-    }
-
-    100% {
-        visibility: visible;
-        opacity: 1;
-    }
 }
 
 @keyframes game-width {
@@ -161,7 +148,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-        animation: game-width 4s both;
+        animation: game-width 2s both;
     }
 
     .answer {
@@ -212,7 +199,6 @@
         height: 200px;
         justify-content: center;
         align-items: center;
-        animation: show-restart-button 1s both;
     }
 }
 
@@ -295,7 +281,6 @@
         height: 100px;
         justify-content: center;
         align-items: center;
-        animation: show-restart-button 1s both;
     }
 }
 

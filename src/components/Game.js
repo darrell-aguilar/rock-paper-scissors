@@ -35,7 +35,7 @@ const Game = (props) => {
                 setWinner('YOU WIN')
                 setTimeout(() => {
                     props.addScore()
-                }, 3500)
+                }, 1500)
                 break
             case 'scissorsrock':
             case 'rockpaper':
@@ -43,7 +43,7 @@ const Game = (props) => {
                 setWinner('YOU LOSE')
                 setTimeout(() => {
                     props.subtractScore()
-                }, 3500)
+                }, 1500)
                 break
             default:
                 setWinner("DRAW")
@@ -55,7 +55,7 @@ const Game = (props) => {
          if (matchCounter === 0) return
          setTimeout(() => {
             setRestartButton(true) 
-        }, 3500)
+        }, 1500)
     }, [matchCounter])
     
     const restart = () => {
