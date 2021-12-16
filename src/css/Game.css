@@ -169,6 +169,18 @@
         font-size: 0.8em
     }
 
+    .icon {
+        width: 8%;
+        height: 8%;
+        margin: 2%;
+        padding: 9%;;
+        border-radius: 100%;
+        background-color: white;
+        z-index: 999;
+        border-width: 15px;
+        border-style: solid;
+    }
+
     .icon-large {
         width: 20%;
         height: 15%;
@@ -264,25 +276,36 @@
         flex-direction: row;
         justify-content: space-between;
         animation: none;
-        }
+    }
 
-        #restart-game-button {
-            margin-top: 5px;
-            width: 150px;
-            height: 70px;
-            border-radius: 10px;
-            font-size: 1rem;
-        }
+    #restart-game-button {
+        margin-top: 5px;
+        width: 150px;
+        height: 70px;
+        border-radius: 10px;
+        font-size: 1rem;
+    }
 
-        #restart-game {
-            left: 50%;
-            top: 70%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            flex-direction: column;
-            height: 100px;
-            justify-content: center;
-            align-items: center;
-            animation: show-restart-button 1s both;
-        }
+    #restart-game {
+        left: 50%;
+        top: 70%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        height: 100px;
+        justify-content: center;
+        align-items: center;
+        animation: show-restart-button 1s both;
+    }
 }
+
+@media screen and (max-width: 300px) {
+    #icon-container {
+        background-image: url('../components/assets/bg-triangle.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 180px 180px;
+        width: 100%;
+        margin: auto;
+    }
+}  
