@@ -8,7 +8,7 @@ const ScoreBoard = (props) => {
                 <div className="container-items" id='title'><img className='item' id='logo' alt='logo' src={logo}/></div>
                 <div className="container-items" id='score'>
                     <div className='score-container item'>
-                        <h5>SCORE</h5>
+                        <h4>SCORE</h4>
                         <p>{props.score}</p>
                     </div>
                 </div>

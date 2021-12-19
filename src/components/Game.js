@@ -12,6 +12,13 @@ const Game = (props) => {
     const [winner, setWinner] = useState(null)
     const [restartButton, setRestartButton] = useState(false)
     const [matchCounter, setMatchCounter] = useState(0)
+    const [showWinner, setShowWinner] = useState(null)
+    const [windowSize, setWindowSize] = useState(window.innerWidth)
+
+    const style = {
+        boxShadowStyle: `0 0 0 60px rgba(100, 107, 138, 0.2), 0 0 0 120px rgb(34, 41, 72, 0.6), 0 0 0 180px rgba(30, 35, 69, 0.5)`,
+        zIndexProp: '5'
+    }
 
     const handleClick = (event) => {
         props.startGame();
@@ -26,8 +33,15 @@ const Game = (props) => {
     }
 
     useEffect(() => {
-        if (matchCounter === 0) return
+        window.addEventListener("resize", showWindowSize)
+    }, [])
+    
+    function showWindowSize() {
+        setWindowSize(window.innerWidth)
+    }
 
+    useEffect(() => {
+        if (matchCounter === 0) return
         switch(answer + opponentAnswer) {
             case 'scissorspaper':
             case 'rockscissors':
@@ -35,6 +49,7 @@ const Game = (props) => {
                 setWinner('YOU WIN')
                 setTimeout(() => {
                     props.addScore()
+                    setShowWinner('WIN')
                 }, 1500)
                 break
             case 'scissorsrock':
@@ -43,6 +58,7 @@ const Game = (props) => {
                 setWinner('YOU LOSE')
                 setTimeout(() => {
                     props.subtractScore()
+                    setShowWinner('LOSE')
                 }, 1500)
                 break
             default:
@@ -60,6 +76,7 @@ const Game = (props) => {
     
     const restart = () => {
         setRestartButton(false)
+        setShowWinner(null)
         props.startGame();
     }
 
@@ -74,17 +91,17 @@ const Game = (props) => {
             }
             { props.gameStarted &&
             <div id='game-inprogress'>
-                <div className='answer' id='your-choice'>
-                    <h2>YOU PICKED</h2>
+                <div className='answer' id='your-choice' style={showWinner === 'WIN' ? {zIndex: style.zIndexProp} : {zIndex: 20}}>
+                    <h2 className='text-header'>YOU PICKED</h2>
                     <div className='answer-icon-container' id='answer-animation'>
-                        <img className='icon-large' id={`${answer}`} alt={answer} src={require(`./assets/icon-${answer}.svg`).default}></img>
+                        <img style={ showWinner === 'WIN' ? {boxShadow: style.boxShadowStyle, zIndex: style.zIndexProp} : {zIndex: 20}} className='icon-large' id={`${answer}`} alt={answer} src={require(`./assets/icon-${answer}.svg`).default}></img>
                     </div>
                 </div>
-                {restartButton && <RestartGame restart={restart} winner={winner}/> }
-                <div className='answer' id='opponent-choice'>
-                    <h2>THE HOUSE PICKED</h2>
+                {restartButton && <RestartGame restart={restart} winner={winner} showWinner={showWinner}/> }
+                <div className='answer' id='opponent-choice' style={showWinner === 'LOSE' ? {zIndex: style.zIndexProp} : {zIndex: 20}}>
+                    <h2 className='text-header'>THE HOUSE PICKED</h2>
                     <div className='answer-icon-container' id='opponent-animation'>
-                        <img className='icon-large' id={`${opponentAnswer}`} alt={opponentAnswer} src={require(`./assets/icon-${opponentAnswer}.svg`).default}></img>
+                        <img style={ showWinner === 'LOSE' ? {boxShadow: style.boxShadowStyle, zIndex: style.zIndexProp} : {zIndex: 20}} className='icon-large' id={`${opponentAnswer}`} alt={opponentAnswer} src={require(`./assets/icon-${opponentAnswer}.svg`).default}></img>
                     </div>
                 </div>
             </div>}
@@ -100,7 +117,7 @@ const RestartGame = (props) => {
     return (
         <div id='restart-game'>
             <h1>{props.winner}</h1>
-            <button id='restart-game-button' onClick={updateRestartGame}>PLAY AGAIN</button>
+            <button style={{ color: props.winner === 'YOU LOSE' ? '#ff471a' : ''}} id='restart-game-button' onClick={updateRestartGame}>PLAY AGAIN</button>
         </div>
     )
 }

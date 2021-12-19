@@ -6,28 +6,29 @@
     margin: auto;
 }
 
+.text-header {
+    position: relative;
+    z-index: 20;
+}
+
 .icon {
     width: 10%;
     height: 10%;
     margin: 3%;
-    padding: 10%;;
+    padding: 8%;;
     border-radius: 100%;
-    background-color: white;
-    z-index: 999;
-    border-width: 20px;
-    border-style: solid;
+    z-index: 20;
+    border: 40px solid transparent;
 }
 
 .icon-large {
+    position: relative;
     width: 25%;
     height: 20%;
     margin: 3%;
     padding: 60px;
     border-radius: 100%;
-    background-color: white;
-    z-index: 999;
-    border-width: 30px;
-    border-style: solid;
+    border: 30px solid transparent;
 }
 
 .icon-answer {
@@ -39,15 +40,27 @@
 }
 
 #paper {
-    border-color: #5470F4;
+    background-image: linear-gradient(white, white),
+                      linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%));
+    background-clip: padding-box, border-box;
+    box-shadow: 0px 10px rgba(64, 85, 189, 0.9),
+                inset 0 10px rgba(0, 0, 0, 0.2);
 }
 
 #scissors {
-    border-color: #EBA625;
+    background-image: linear-gradient(white, white),
+                      linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%));
+    background-clip: padding-box, border-box;
+    box-shadow: 0px 10px rgba(180, 129, 26, 0.9),
+                inset 0 10px rgba(0, 0, 0, 0.2);
 }
 
 #rock {
-    border-color: #DD3D5A;
+    background-image: linear-gradient(white, white),
+                      linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
+    background-clip: padding-box, border-box;
+    box-shadow: 0px 10px rgba(150, 44, 63, 0.9),
+                inset 0 10px rgba(0, 0, 0, 0.2);
 }
 
 #game-inprogress {
@@ -70,6 +83,8 @@
 
 .answer-icon-container {
     margin-top: 100px;
+    position: relative;
+    z-index: 10;
 }
 
 #restart-game {
@@ -82,6 +97,11 @@
     height: 500px;
     justify-content: center;
     align-items: center;
+    z-index: 20;
+}
+
+#restart-game > h1 {
+    font-size: 3rem;
 }
 
 @keyframes game-width {
@@ -100,11 +120,13 @@
 
 #restart-game-button {
     margin-top: 20px;
-    width: 250px;
-    height: 80px;
+    width: 200px;
+    height: 50px;
     border-radius: 10px;
     padding: 10px;
-    font-size: 2rem;
+    font-size: 1rem;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    cursor: pointer;
 }
 
 @keyframes show-answer {
@@ -162,10 +184,7 @@
         margin: 2%;
         padding: 9%;;
         border-radius: 100%;
-        background-color: white;
-        z-index: 999;
-        border-width: 15px;
-        border-style: solid;
+        border: 30px solid transparent;
     }
 
     .icon-large {
@@ -175,7 +194,6 @@
         padding: 40px;
         border-radius: 100%;
         background-color: white;
-        z-index: 999;
         border-width: 20px;
         border-style: solid;
     }
@@ -222,10 +240,7 @@
         margin: 5%;
         padding: 10%;;
         border-radius: 100%;
-        background-color: white;
-        z-index: 999;
-        border-width: 10px;
-        border-style: solid;
+        border: 20px solid transparent;
     }
 
     .icon-large {
@@ -235,7 +250,6 @@
         padding: 30px;
         border-radius: 100%;
         background-color: white;
-        z-index: 999;
         border-width: 15px;
         border-style: solid;
     }
@@ -292,5 +306,9 @@
         background-size: 180px 180px;
         width: 100%;
         margin: auto;
+    }
+
+    .icon {
+        border: 15px solid transparent;
     }
 }  

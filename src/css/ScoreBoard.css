@@ -1,5 +1,8 @@
 #parent-nav-container {
-    padding: 50px;}
+    padding: 50px;
+    position: relative;
+    z-index: 20;
+}
 
 .nav-container {
     align-items: center;
@@ -21,19 +24,19 @@
     height: 80%;
     padding: 0 20px;
     margin-right: 50px;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: white;   
 }
 
-h5 {
+h4 {
     padding-top: 15px;
-    color: #3C48A1;
+    color: var(--score-color);
 }
 
 .score-container > p {
     font-size: 3rem;
     font-weight: bolder;
-    color: #56546C;
+    color: var(--dark-text-color);
 }
 
 
@@ -76,7 +79,7 @@ h5 {
         width: 50%;
         height: 50%;
         padding: 0 20px;
-        margin-right: 20px;
+        margin: 10px 20px 10px 0;
         border-radius: 3px;
         background-color: white;   
     }
@@ -84,11 +87,5 @@ h5 {
     .score-container > p {
         font-size: 2rem;
         font-weight: bolder;
-        color: #56546C;
     }
-    /*.score-container > p {
-        font-size: 2rem;
-        font-weight: bolder;
-        color: #56546C;
-    } */
 }
