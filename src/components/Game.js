@@ -15,8 +15,10 @@ const Game = (props) => {
     const [showWinner, setShowWinner] = useState(null)
     const [windowSize, setWindowSize] = useState(window.innerWidth)
 
+
+    // Style below is used for tracking the window width and changing the Z Index to ensure winner shadow/border effect does not cover other elements
     const style = {
-        boxShadowStyle: `0 0 0 60px rgba(100, 107, 138, 0.2), 0 0 0 120px rgb(34, 41, 72, 0.6), 0 0 0 180px rgba(30, 35, 69, 0.5)`,
+        boxShadowStyle: `0 0 0 ${windowSize/20}px rgba(100, 107, 138, 0.2), 0 0 0 ${windowSize/10}px rgb(34, 41, 72, 0.6), 0 0 0 ${windowSize/7}px rgba(30, 35, 69, 0.5)`,
         zIndexProp: '5'
     }
 
@@ -34,10 +36,12 @@ const Game = (props) => {
 
     useEffect(() => {
         window.addEventListener("resize", showWindowSize)
+        showWindowSize()
     }, [])
     
     function showWindowSize() {
-        setWindowSize(window.innerWidth)
+        let width = window.innerWidth
+        setWindowSize(width)
     }
 
     useEffect(() => {

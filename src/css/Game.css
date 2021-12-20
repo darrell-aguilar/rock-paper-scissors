@@ -298,7 +298,7 @@
     }
 }
 
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 400px) {
     #icon-container {
         background-image: url('../components/assets/bg-triangle.svg');
         background-repeat: no-repeat;
