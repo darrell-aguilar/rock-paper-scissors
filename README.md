@@ -2,6 +2,8 @@
 
 This project was created using [ReactJS](https://reactjs.org/).
 
+:computer: Live version of the project can be viewed [here](https://darrell404.github.io/rock-paper-scissors/)
+
 ## Prerequisite:
   - [NodeJS](https://nodejs.org/en/download/)
   - [Git](https://git-scm.com/downloads)
